@@ -87,9 +87,7 @@ def align_nd_chunks(
                     # we need to increase the last chunk as much as possible
                     # but keeping it aligned, and then add a new chunk
                     max_increase = max_chunk - aligned_chunks[-1]
-                    max_increase = (
-                        max_increase - (max_increase - unfilled_size) % fixed_chunk
-                    )
+                    max_increase -= (max_increase - unfilled_size) % fixed_chunk
                     aligned_chunks[-1] += max_increase
                 else:
                     # Perfect scenario where the chunks can be merged without any split.

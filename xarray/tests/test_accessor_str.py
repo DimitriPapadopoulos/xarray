@@ -136,7 +136,7 @@ def test_contains(dtype) -> None:
     assert_equal(result, expected)
 
     # regex regex=False
-    pat_re = re.compile("(/w+)")
+    pat_re = re.compile(r"(/w+)")
     with pytest.raises(
         ValueError,
         match="Must use regular expression matching for regular expression object.",
@@ -538,7 +538,7 @@ def test_replace_literal(dtype) -> None:
     # Cannot do a literal replace if given a callable repl or compiled
     # pattern
     callable_repl = lambda m: m.group(0).swapcase()
-    compiled_pat = re.compile("[a-z][A-Z]{2}")
+    compiled_pat = re.compile(r"[a-z][A-Z]{2}")
 
     msg = "Cannot use a callable replacement when regex=False"
     with pytest.raises(ValueError, match=msg):

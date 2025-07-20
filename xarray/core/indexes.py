@@ -1792,7 +1792,7 @@ class Indexes(collections.abc.Mapping, Generic[T_PandasOrXarrayIndex]):
             A dictionary of all coordinate variables having the same index.
 
         """
-        if errors not in ["raise", "ignore"]:
+        if errors not in {"raise", "ignore"}:
             raise ValueError('errors must be either "raise" or "ignore"')
 
         if key not in self._indexes:

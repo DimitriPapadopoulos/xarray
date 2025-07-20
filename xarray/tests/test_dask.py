@@ -936,7 +936,7 @@ def test_dask_kwargs_variable(method):
 def test_dask_kwargs_dataarray(method):
     data = da.from_array(np.arange(3), chunks=(2,))
     x = DataArray(data)
-    if method in ["load", "compute"]:
+    if method in {"load", "compute"}:
         dask_func = "dask.array.compute"
     else:
         dask_func = "dask.persist"
@@ -950,7 +950,7 @@ def test_dask_kwargs_dataarray(method):
 def test_dask_kwargs_dataset(method):
     data = da.from_array(np.arange(3), chunks=(2,))
     x = Dataset({"x": (("y"), data)})
-    if method in ["load", "compute"]:
+    if method in {"load", "compute"}:
         dask_func = "dask.array.compute"
     else:
         dask_func = "dask.persist"

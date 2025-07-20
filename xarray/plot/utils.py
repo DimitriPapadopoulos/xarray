@@ -86,7 +86,7 @@ def _build_discrete_cmap(cmap, levels, extend, filled):
 
     if extend == "both":
         ext_n = 2
-    elif extend in ["min", "max"]:
+    elif extend in {"min", "max"}:
         ext_n = 1
     else:
         ext_n = 0
@@ -354,7 +354,7 @@ def _infer_xy_labels_3d(
     could_be_color = [
         label
         for label in darray.dims
-        if darray[label].size in (3, 4) and label not in (x, y)
+        if darray[label].size in {3, 4} and label not in {x, y}
     ]
     if rgb is None and not could_be_color:
         raise ValueError(
@@ -364,7 +364,7 @@ def _infer_xy_labels_3d(
         )
     if rgb is None and len(could_be_color) == 1:
         rgb = could_be_color[0]
-    if rgb is not None and darray[rgb].size not in (3, 4):
+    if rgb is not None and darray[rgb].size not in {3, 4}:
         raise ValueError(
             f"Cannot interpret dim {rgb!r} of size {darray[rgb].size} as RGB or RGBA."
         )
@@ -372,7 +372,7 @@ def _infer_xy_labels_3d(
     # If rgb dimension is still unknown, there must be two or three dimensions
     # in could_be_color.  We therefore warn, and use a heuristic to break ties.
     if rgb is None:
-        assert len(could_be_color) in (2, 3)
+        assert len(could_be_color) in {2, 3}
         rgb = could_be_color[-1]
         warnings.warn(
             "Several dimensions of this array could be colors.  Xarray "
@@ -1254,7 +1254,7 @@ def _infer_meta_data(ds, x, y, hue, hue_style, add_guide, funcname):
             add_colorbar = False
             add_legend = False
     else:
-        if add_guide is True and funcname not in ("quiver", "streamplot"):
+        if add_guide is True and funcname not in {"quiver", "streamplot"}:
             raise ValueError("Cannot set add_guide when hue is None.")
         add_legend = False
         add_colorbar = False
@@ -1283,7 +1283,7 @@ def _infer_meta_data(ds, x, y, hue, hue_style, add_guide, funcname):
                 ".plot.streamplot"
             )
 
-    if hue_style is not None and hue_style not in ["discrete", "continuous"]:
+    if hue_style is not None and hue_style not in {"discrete", "continuous"}:
         raise ValueError("hue_style must be either None, 'discrete' or 'continuous'.")
 
     if hue:

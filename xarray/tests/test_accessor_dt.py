@@ -74,12 +74,12 @@ class TestDatetimeAccessor:
         ],
     )
     def test_field_access(self, field) -> None:
-        if field in ["week", "weekofyear"]:
+        if field in {"week", "weekofyear"}:
             data = self.times.isocalendar()["week"]
         else:
             data = getattr(self.times, field)
 
-        if data.dtype.kind != "b" and field not in ("date", "time"):
+        if data.dtype.kind != "b" and field not in {"date", "time"}:
             # pandas 2.0 returns int32 for integer fields now
             data = data.astype("int64")
 
@@ -92,7 +92,7 @@ class TestDatetimeAccessor:
 
         expected = xr.DataArray(data, name=name, coords=[self.times], dims=["time"])
 
-        if field in ["week", "weekofyear"]:
+        if field in {"week", "weekofyear"}:
             with pytest.warns(
                 FutureWarning, match="dt.weekofyear and dt.week have been deprecated"
             ):

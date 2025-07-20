@@ -519,7 +519,7 @@ def _create_nan_agg_method(name, coerce_strings=False, invariant_0d=False):
             nanname = "nan" + name
             func = getattr(nanops, nanname)
         else:
-            if name in ["sum", "prod"]:
+            if name in {"sum", "prod"}:
                 kwargs.pop("min_count", None)
 
             xp = get_array_namespace(values)

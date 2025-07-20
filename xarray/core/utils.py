@@ -1332,7 +1332,7 @@ def _get_func_args(func, param_names):
     else:
         params = list(func_args)[1:]
         if any(
-            (p.kind in [p.VAR_POSITIONAL, p.VAR_KEYWORD]) for p in func_args.values()
+            (p.kind in {p.VAR_POSITIONAL, p.VAR_KEYWORD}) for p in func_args.values()
         ):
             raise ValueError(
                 "`param_names` must be provided because `func` takes variable length arguments."

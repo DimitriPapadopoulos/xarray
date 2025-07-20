@@ -131,7 +131,7 @@ class TestDataArrayRolling:
         # index 0 is at the rightmost edge of the window
         # need to reverse index here
         # see GH #8541
-        if func_name in ["move_argmin", "move_argmax"]:
+        if func_name in {"move_argmin", "move_argmax"}:
             expected = window - 1 - expected
 
         # Using assert_allclose because we get tiny (1e-17) differences in numbagg.

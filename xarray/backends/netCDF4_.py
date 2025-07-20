@@ -171,7 +171,7 @@ def _nc4_dtype(var):
         _check_encoding_dtype_is_vlen_string(dtype)
     elif is_unicode_dtype(var.dtype):
         dtype = str
-    elif var.dtype.kind in ["i", "u", "f", "c", "S"]:
+    elif var.dtype.kind in {"i", "u", "f", "c", "S"}:
         dtype = var.dtype
     else:
         raise ValueError(f"unsupported dtype for netCDF4 variable: {var.dtype}")
@@ -227,7 +227,7 @@ def _force_native_endianness(var):
     #     >    big-endian
     #     |    not applicable
     # Below we check if the data type is not native or NA
-    if var.dtype.byteorder not in ["=", "|"]:
+    if var.dtype.byteorder not in {"=", "|"}:
         # if endianness is specified explicitly, convert to the native type
         data = var.data.astype(var.dtype.newbyteorder("="))
         var = Variable(var.dims, data, var.attrs, var.encoding)
@@ -322,7 +322,7 @@ def _extract_nc4_variable_encoding(
 
 def _is_list_of_strings(value) -> bool:
     arr = np.asarray(value)
-    return arr.dtype.kind in ["U", "S"] and arr.size > 1
+    return arr.dtype.kind in {"U", "S"} and arr.size > 1
 
 
 def _build_and_get_enum(

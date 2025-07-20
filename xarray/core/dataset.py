@@ -3818,7 +3818,7 @@ class Dataset(
         }
 
         # optimization: subset to coordinate range of the target index
-        if method in ["linear", "nearest"]:
+        if method in {"linear", "nearest"}:
             for k, v in validated_indexers.items():
                 obj, newidx = missing._localize(obj, {k: v})
                 validated_indexers[k] = newidx[k]
@@ -5895,7 +5895,7 @@ class Dataset(
         Dataset.drop_vars
         Dataset.drop_sel
         """
-        if errors not in ["raise", "ignore"]:
+        if errors not in {"raise", "ignore"}:
             raise ValueError('errors must be either "raise" or "ignore"')
 
         if is_dict_like(labels) and not isinstance(labels, dict):
@@ -5985,7 +5985,7 @@ class Dataset(
         Data variables:
             A        (x, y) int64 32B 0 2 3 5
         """
-        if errors not in ["raise", "ignore"]:
+        if errors not in {"raise", "ignore"}:
             raise ValueError('errors must be either "raise" or "ignore"')
 
         labels = either_dict_or_kwargs(labels, labels_kwargs, "drop_sel")
@@ -6095,7 +6095,7 @@ class Dataset(
             The dataset without the given dimensions (or any variables
             containing those dimensions).
         """
-        if errors not in ["raise", "ignore"]:
+        if errors not in {"raise", "ignore"}:
             raise ValueError('errors must be either "raise" or "ignore"')
 
         if isinstance(drop_dims, str) or not isinstance(drop_dims, Iterable):
@@ -7630,10 +7630,10 @@ class Dataset(
             for k in lhs_data_vars:
                 if k in rhs_data_vars:
                     dest_vars[k] = f(lhs_vars[k], rhs_vars[k])
-                elif join in ["left", "outer"]:
+                elif join in {"left", "outer"}:
                     dest_vars[k] = f(lhs_vars[k], np.nan)
             for k in rhs_data_vars:
-                if k not in dest_vars and join in ["right", "outer"]:
+                if k not in dest_vars and join in {"right", "outer"}:
                     dest_vars[k] = f(rhs_vars[k], np.nan)
             return dest_vars
 
@@ -8957,7 +8957,7 @@ class Dataset(
         """
         pad_width = either_dict_or_kwargs(pad_width, pad_width_kwargs, "pad")
 
-        if mode in ("edge", "reflect", "symmetric", "wrap"):
+        if mode in {"edge", "reflect", "symmetric", "wrap"}:
             coord_pad_mode = mode
             coord_pad_options = {
                 "stat_length": stat_length,

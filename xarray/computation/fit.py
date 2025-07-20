@@ -48,7 +48,7 @@ def _get_func_args(func, param_names):
     else:
         params = list(func_args)[1:]
         if any(
-            (p.kind in [p.VAR_POSITIONAL, p.VAR_KEYWORD]) for p in func_args.values()
+            (p.kind in {p.VAR_POSITIONAL, p.VAR_KEYWORD}) for p in func_args.values()
         ):
             raise ValueError(
                 "`param_names` must be provided because `func` takes variable length arguments."
@@ -442,7 +442,7 @@ def curvefit(
                         f"dimensions {preserved_dims}."
                     )
 
-    if errors not in ["raise", "ignore"]:
+    if errors not in {"raise", "ignore"}:
         raise ValueError('errors must be either "raise" or "ignore"')
 
     # Broadcast all coords with each other

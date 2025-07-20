@@ -493,7 +493,7 @@ def summarize_index(
         max_width = OPTIONS["display_width"]
 
     def prefixes(length: int) -> list[str]:
-        if length in (0, 1):
+        if length in {0, 1}:
             return [" "]
 
         return ["┌"] + ["│"] * max(length - 2, 0) + ["└"]

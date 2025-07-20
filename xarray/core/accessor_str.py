@@ -95,7 +95,7 @@ def _contains_str_like(pat: Any) -> bool:
     if not hasattr(pat, "dtype"):
         return False
 
-    return pat.dtype.kind in ["U", "S"]
+    return pat.dtype.kind in {"U", "S"}
 
 
 def _contains_compiled_re(pat: Any) -> bool:

@@ -1585,7 +1585,7 @@ class TestVariable:
             for key, value in func.kwargs.items()
         }
 
-        if error is not None and func.name in ("searchsorted", "clip"):
+        if error is not None and func.name in {"searchsorted", "clip"}:
             with pytest.raises(error):
                 func(variable, *args, **kwargs)
 
@@ -1914,7 +1914,7 @@ class TestVariable:
         values = np.ones(5)
         y = values * unit
 
-        if error is not None and func.name in ("sum", "commutative_sum"):
+        if error is not None and func.name in {"sum", "commutative_sum"}:
             with pytest.raises(error):
                 func(variable, y)
 
@@ -2906,7 +2906,7 @@ class TestDataArray:
             for key, value in kwargs.items()
         }
 
-        if variant not in ("masking", "dropping") and error is not None:
+        if variant not in {"masking", "dropping"} and error is not None:
             with pytest.raises(error):
                 data_array.where(**kwargs)
 
@@ -4409,7 +4409,7 @@ class TestDataset:
             "dropping": {"cond": condition, "drop": True},
         }
         kwargs = variant_kwargs.get(variant)
-        if variant not in ("masking", "dropping") and error is not None:
+        if variant not in {"masking", "dropping"} and error is not None:
             with pytest.raises(error):
                 ds.where(**kwargs)
 

@@ -453,7 +453,7 @@ def _choose_float_dtype(
             add_offset is not None
             and scale_factor is not None
             and offset_type == scale_type
-            and scale_type in [np.float32, np.float64]
+            and scale_type in {np.float32, np.float64}
         ):
             # in case of int32 -> we need upcast to float64
             # due to precision issues
@@ -620,10 +620,10 @@ class NonStringCoder(VariableCoder):
     """Encode NonString variables if dtypes differ."""
 
     def encode(self, variable: Variable, name: T_Name = None) -> Variable:
-        if "dtype" in variable.encoding and variable.encoding["dtype"] not in (
+        if "dtype" in variable.encoding and variable.encoding["dtype"] not in {
             "S1",
             str,
-        ):
+        }:
             dims, data, attrs, encoding = unpack_for_encoding(variable)
             dtype = np.dtype(encoding.pop("dtype"))
             if dtype != variable.dtype:

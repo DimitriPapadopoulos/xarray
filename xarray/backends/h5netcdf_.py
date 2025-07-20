@@ -68,7 +68,7 @@ def _read_attributes(h5netcdf_var):
     # bytes attributes to strings
     attrs = {}
     for k, v in h5netcdf_var.attrs.items():
-        if k not in ["_FillValue", "missing_value"] and isinstance(v, bytes):
+        if k not in {"_FillValue", "missing_value"} and isinstance(v, bytes):
             try:
                 v = v.decode("utf-8")
             except UnicodeDecodeError:
@@ -170,7 +170,7 @@ class H5NetCDFStore(WritableCFDataStore):
                     f"{magic_number!r} is not the signature of a valid netCDF4 file"
                 )
 
-        if format not in [None, "NETCDF4"]:
+        if format not in {None, "NETCDF4"}:
             raise ValueError("invalid format for h5netcdf backend")
 
         kwargs = {
@@ -318,7 +318,7 @@ class H5NetCDFStore(WritableCFDataStore):
         # If both styles are used together, h5py takes precedence
         # If set_encoding=True, raise ValueError in case of mismatch
         if encoding.pop("zlib", False):
-            if check_encoding and encoding.get("compression") not in (None, "gzip"):
+            if check_encoding and encoding.get("compression") not in {None, "gzip"}:
                 raise ValueError("'zlib' and 'compression' encodings mismatch")
             encoding.setdefault("compression", "gzip")
 

@@ -571,7 +571,7 @@ class Variable(NamedArray, AbstractArray, VariableArithmetic):
             "attrs": decode_numpy_dict_values(self.attrs),
         }
         if data is not False:
-            if data in [True, "list"]:
+            if data in {True, "list"}:
                 item["data"] = ensure_us_time_resolution(self.to_numpy()).tolist()
             elif data == "array":
                 item["data"] = ensure_us_time_resolution(self.data)
@@ -1224,7 +1224,7 @@ class Variable(NamedArray, AbstractArray, VariableArithmetic):
             end_values = self._pad_options_dim_to_index(end_values)
 
         # workaround for bug in Dask's default value of stat_length https://github.com/dask/dask/issues/5303
-        if stat_length is None and mode in ["maximum", "mean", "median", "minimum"]:
+        if stat_length is None and mode in {"maximum", "mean", "median", "minimum"}:
             stat_length = [(n, n) for n in self.data.shape]  # type: ignore[assignment]
 
         pad_width_by_index = self._pad_options_dim_to_index(pad_width)

@@ -823,7 +823,7 @@ def convert_times(times, date_type, raise_on_invalid: bool = True) -> np.ndarray
     If raise_on_valid is True (default), invalid dates trigger a ValueError.
     Otherwise, the invalid element is replaced by np.nan for cftime types and np.NaT for np.datetime64.
     """
-    if date_type in (pd.Timestamp, np.datetime64) and not is_np_datetime_like(
+    if date_type in {pd.Timestamp, np.datetime64} and not is_np_datetime_like(
         times.dtype
     ):
         return cftime_to_nptime(times, raise_on_invalid=raise_on_invalid)
@@ -1065,7 +1065,7 @@ def _eagerly_encode_cf_datetime(
             # parse with cftime instead
             raise OutOfBoundsDatetime
         assert np.issubdtype(dates.dtype, "datetime64")
-        if calendar in ["standard", "gregorian"] and np.nanmin(dates).astype(
+        if calendar in {"standard", "gregorian"} and np.nanmin(dates).astype(
             "=M8[us]"
         ).astype(datetime) < datetime(1582, 10, 15):
             raise_gregorian_proleptic_gregorian_mismatch_error = True

@@ -50,10 +50,10 @@ def detect_parameters(open_dataset: Callable) -> tuple[str, ...]:
     parameters = signature.parameters
     parameters_list = []
     for name, param in parameters.items():
-        if param.kind in (
+        if param.kind in {
             inspect.Parameter.VAR_KEYWORD,
             inspect.Parameter.VAR_POSITIONAL,
-        ):
+        }:
             raise TypeError(
                 f"All the parameters in {open_dataset!r} signature should be explicit. "
                 "*args and **kwargs is not supported"

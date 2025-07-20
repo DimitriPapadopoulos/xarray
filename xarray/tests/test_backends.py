@@ -3885,7 +3885,7 @@ class TestZarrWriteEmpty(TestZarrDirectoryStore):
             assert set(expected) == {
                 file.lstrip("c/")
                 for file in ls
-                if (file not in (".zattrs", ".zarray", "zarr.json"))
+                if (file not in {".zattrs", ".zarray", "zarr.json"})
             }
 
         # The zarr format is set by the `default_zarr_format`

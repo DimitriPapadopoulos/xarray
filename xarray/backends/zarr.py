@@ -89,15 +89,15 @@ def _choose_default_mode(
         else:
             mode = "w-"
 
-    if mode not in ["a", "a-"] and append_dim is not None:
+    if mode not in {"a", "a-"} and append_dim is not None:
         raise ValueError("cannot set append_dim unless mode='a' or mode=None")
 
-    if mode not in ["a", "a-", "r+"] and region is not None:
+    if mode not in {"a", "a-", "r+"} and region is not None:
         raise ValueError(
             "cannot set region unless mode='a', mode='a-', mode='r+' or mode=None"
         )
 
-    if mode not in ["w", "w-", "a", "a-", "r+"]:
+    if mode not in {"w", "w-", "a", "a-", "r+"}:
         raise ValueError(
             "The only supported options for mode are 'w', "
             f"'w-', 'a', 'a-', and 'r+', but mode={mode!r}"
@@ -478,7 +478,7 @@ def _validate_datatypes_for_zarr_append(vname, existing_var, new_var):
         or np.issubdtype(new_var.dtype, np.datetime64)
         or np.issubdtype(new_var.dtype, np.bool_)
         or new_var.dtype == object
-        or (new_var.dtype.kind in ("S", "U") and existing_var.dtype == object)
+        or (new_var.dtype.kind in {"S", "U"} and existing_var.dtype == object)
     ):
         # We can skip dtype equality checks under two conditions: (1) if the var to append is
         # new to the dataset, because in this case there is no existing var to compare it to;
@@ -970,7 +970,7 @@ class ZarrStore(AbstractWritableDataStore):
                     self._append_dim,
                 )
 
-        if self._mode not in ["r", "r+"]:
+        if self._mode not in {"r", "r+"}:
             self.set_attributes(attributes)
             self.set_dimensions(variables_encoded, unlimited_dims=unlimited_dims)
 
@@ -1265,7 +1265,7 @@ class ZarrStore(AbstractWritableDataStore):
         if not isinstance(region, dict):
             raise TypeError(f"``region`` must be a dict, got {type(region)}")
         if any(v == "auto" for v in region.values()):
-            if self._mode not in ["r+", "a"]:
+            if self._mode not in {"r+", "a"}:
                 raise ValueError(
                     f"``mode`` must be 'r+' or 'a' when using ``region='auto'``, got {self._mode!r}"
                 )
@@ -1316,7 +1316,7 @@ class ZarrStore(AbstractWritableDataStore):
         return ds.drop_vars(ds.indexes)
 
     def _validate_encoding(self, encoding) -> None:
-        if encoding and self._mode in ["a", "a-", "r+"]:
+        if encoding and self._mode in {"a", "a-", "r+"}:
             existing_var_names = self.array_keys()
             for var_name in existing_var_names:
                 if var_name in encoding:
@@ -1782,7 +1782,7 @@ def _get_open_params(
         if not getattr(store, "supports_consolidated_metadata", True):
             consolidated = consolidate_on_close = False
 
-    if consolidated in [None, True]:
+    if consolidated in {None, True}:
         # open the root of the store, in case there is metadata consolidated there
         group = open_kwargs.pop("path")
 

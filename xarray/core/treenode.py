@@ -37,7 +37,7 @@ class NodePath(PurePosixPath):
         if self.drive:
             raise ValueError("NodePaths cannot have drives")
 
-        if self.root not in ["/", ""]:
+        if self.root not in {"/", ""}:
             raise ValueError(
                 'Root of NodePath can only be either "/" or "", with "" meaning the path is relative.'
             )
@@ -557,7 +557,7 @@ class TreeNode(Generic[Tree]):
                     raise KeyError(f"Could not find node at {path}")
                 else:
                     current_node = current_node.parent
-            elif part in ("", "."):
+            elif part in {"", "."}:
                 pass
             elif current_node.get(part) is None:
                 raise KeyError(f"Could not find node at {path}")
@@ -628,7 +628,7 @@ class TreeNode(Generic[Tree]):
                         raise KeyError(f"Could not reach node at path {path}")
                     else:
                         current_node = current_node.parent
-                elif part in ("", "."):
+                elif part in {"", "."}:
                     pass
                 elif part in current_node.children:
                     current_node = current_node.children[part]

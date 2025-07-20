@@ -224,7 +224,7 @@ class TestXarrayUfuncs:
         expected = np_func(*args)
         actual = xu_func(*args)
 
-        if name in ["angle", "iscomplex"]:
+        if name in {"angle", "iscomplex"}:
             np.testing.assert_equal(expected, actual.values)
         else:
             assert_identical(actual, expected)

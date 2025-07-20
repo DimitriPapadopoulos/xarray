@@ -135,10 +135,10 @@ class TestDictionaries:
         with pytest.raises(AttributeError):
             x.update(self.y)
         assert x.mapping == self.x
-        assert repr(x) in (
+        assert repr(x) in {
             "Frozen({'a': 'A', 'b': 'B'})",
             "Frozen({'b': 'B', 'a': 'A'})",
-        )
+        }
 
     def test_filtered(self):
         x = utils.FilteredMapping(keys={"a"}, mapping={"a": 1, "b": 2})

@@ -33,10 +33,10 @@ def _datatree_to_netcdf(
     See `DataTree.to_netcdf` for full API docs.
     """
 
-    if format not in [None, *get_args(T_DataTreeNetcdfTypes)]:
+    if format not in {None, *get_args(T_DataTreeNetcdfTypes)}:
         raise ValueError("to_netcdf only supports the NETCDF4 format")
 
-    if engine not in [None, *get_args(T_DataTreeNetcdfEngine)]:
+    if engine not in {None, *get_args(T_DataTreeNetcdfEngine)}:
         raise ValueError("to_netcdf only supports the netcdf4 and h5netcdf engines")
 
     if group is not None:

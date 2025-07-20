@@ -2932,7 +2932,7 @@ class TestDataArray:
         expected = DataArray(
             orig.data.mean(axis=1, keepdims=True),
             dims=orig.dims,
-            coords={k: v for k, v in coords.items() if k not in ["y", "lat"]},
+            coords={k: v for k, v in coords.items() if k not in {"y", "lat"}},
         )
         assert_equal(actual, expected)
 
@@ -2989,7 +2989,7 @@ class TestDataArray:
         va[0, 0] = np.nan
 
         actual = DataArray(va).quantile(q, dim=dim, keep_attrs=True, skipna=skipna)
-        _percentile_func = np.nanpercentile if skipna in (True, None) else np.percentile
+        _percentile_func = np.nanpercentile if skipna in {True, None} else np.percentile
         expected = _percentile_func(va.values, np.array(q) * 100, axis=axis)
         np.testing.assert_allclose(actual.values, expected)
         if is_scalar(q):

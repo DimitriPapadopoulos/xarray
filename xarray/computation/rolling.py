@@ -680,7 +680,7 @@ class DataArrayRolling(Rolling["DataArray"]):
         # index 0 is at the rightmost edge of the window
         # need to reverse index here
         # see GH #8541
-        if func in [bottleneck.move_argmin, bottleneck.move_argmax]:
+        if func in {bottleneck.move_argmin, bottleneck.move_argmax}:
             values = self.window[0] - 1 - values
 
         if self.center[0]:
@@ -735,7 +735,7 @@ class DataArrayRolling(Rolling["DataArray"]):
             # this the default in xarray too, but until we do, don't use numbagg for
             # std and var unless ddof is set to 1.
             if (
-                numbagg_move_func not in [numbagg.move_std, numbagg.move_var]
+                numbagg_move_func not in {numbagg.move_std, numbagg.move_var}
                 or kwargs.get("ddof") == 1
             ):
                 return self._numbagg_reduce(

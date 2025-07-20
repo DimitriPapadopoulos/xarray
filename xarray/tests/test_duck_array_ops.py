@@ -627,7 +627,7 @@ def test_reduce(dim_num, dtype, dask, func, skipna, aggdim):
         assert_allclose(actual, expected, rtol=rtol)
 
         # make sure the compatibility with pandas' results.
-        if func in ["var", "std"]:
+        if func in {"var", "std"}:
             expected = series_reduce(da, func, skipna=skipna, dim=aggdim, ddof=0)
             assert_allclose(actual, expected, rtol=rtol)
             # also check ddof!=0 case
@@ -641,7 +641,7 @@ def test_reduce(dim_num, dtype, dask, func, skipna, aggdim):
             assert_allclose(actual, expected, rtol=rtol)
 
         # make sure the dtype argument
-        if func not in ["max", "min"]:
+        if func not in {"max", "min"}:
             actual = getattr(da, func)(skipna=skipna, dim=aggdim, dtype=float)
             assert_dask_array(actual, dask)
             assert actual.dtype == float

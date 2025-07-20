@@ -194,7 +194,7 @@ class Aligner(Generic[T_Alignable]):
         self.objects_matching_indexes = ()
         self.objects_matching_index_vars = ()
 
-        if join not in ["inner", "outer", "override", "exact", "left", "right"]:
+        if join not in {"inner", "outer", "override", "exact", "left", "right"}:
             raise ValueError(f"invalid value for join: {join}")
         self.join = join
 
@@ -375,7 +375,7 @@ class Aligner(Generic[T_Alignable]):
         return False
 
     def _get_index_joiner(self, index_cls) -> Callable:
-        if self.join in ["outer", "inner"]:
+        if self.join in {"outer", "inner"}:
             return functools.partial(
                 functools.reduce,
                 functools.partial(index_cls.join, how=self.join),

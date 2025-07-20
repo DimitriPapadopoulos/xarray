@@ -1406,7 +1406,7 @@ class Common2dMixin:
 
     @pytest.mark.filterwarnings("ignore: Attempting to set")
     def test_can_plot_axis_size_one(self) -> None:
-        if self.plotfunc.__name__ not in ("contour", "contourf"):
+        if self.plotfunc.__name__ not in {"contour", "contourf"}:
             self.plotfunc(DataArray(np.ones((1, 1))))
 
     def test_disallows_rgb_arg(self) -> None:

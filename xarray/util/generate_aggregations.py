@@ -444,7 +444,7 @@ class GroupByAggregationGenerator(AggregationGenerator):
 
         # median isn't enabled yet, because it would break if a single group was present in multiple
         # chunks. The non-flox code path will just rechunk every group to a single chunk and execute the median
-        method_is_not_flox_supported = method.name in ("median", "cumsum", "cumprod")
+        method_is_not_flox_supported = method.name in {"median", "cumsum", "cumprod"}
         if method_is_not_flox_supported:
             indent = 12
         else:

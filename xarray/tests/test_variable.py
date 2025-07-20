@@ -1895,7 +1895,7 @@ class TestVariable(VariableSubclassobjects):
 
         v = Variable(["x", "y"], d)
         actual = v.quantile(q, dim=dim, skipna=skipna)
-        _percentile_func = np.nanpercentile if skipna in (True, None) else np.percentile
+        _percentile_func = np.nanpercentile if skipna in {True, None} else np.percentile
         expected = _percentile_func(d, np.array(q) * 100, axis=axis)
         np.testing.assert_allclose(actual.values, expected)
 

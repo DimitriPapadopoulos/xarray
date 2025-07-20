@@ -1945,7 +1945,7 @@ def to_netcdf(
     scheduler = _get_scheduler()
     have_chunks = any(v.chunks is not None for v in dataset.variables.values())
 
-    autoclose = have_chunks and scheduler in ["distributed", "multiprocessing"]
+    autoclose = have_chunks and scheduler in {"distributed", "multiprocessing"}
     if autoclose and engine == "scipy":
         raise NotImplementedError(
             f"Writing netCDF files with the {engine} backend "

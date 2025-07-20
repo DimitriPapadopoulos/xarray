@@ -267,7 +267,7 @@ def plot(
     xarray.DataArray.squeeze
     """
     darray = darray.squeeze(
-        d for d, s in darray.sizes.items() if s == 1 and d not in (row, col, hue)
+        d for d, s in darray.sizes.items() if s == 1 and d not in {row, col, hue}
     ).compute()
 
     plot_dims = set(darray.dims)
@@ -281,7 +281,7 @@ def plot(
 
     if ndims == 0 or darray.size == 0:
         raise TypeError("No numeric data to plot.")
-    if ndims in (1, 2):
+    if ndims in {1, 2}:
         if row or col:
             kwargs["subplot_kws"] = subplot_kws
             kwargs["row"] = row
@@ -1038,7 +1038,7 @@ artist :
             )
 
         if add_legend_:
-            if plotfunc.__name__ in ["scatter", "line"]:
+            if plotfunc.__name__ in {"scatter", "line"}:
                 _add_legend(
                     (
                         hueplt_norm

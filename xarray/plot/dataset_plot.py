@@ -256,10 +256,10 @@ levels : int or array-like, optional
         else:
             cmap_params_subset = {}
 
-        if (u is not None or v is not None) and plotfunc.__name__ not in (
+        if (u is not None or v is not None) and plotfunc.__name__ not in {
             "quiver",
             "streamplot",
-        ):
+        }:
             raise ValueError("u, v are only allowed for quiver or streamplot plots.")
 
         primitive = plotfunc(
@@ -304,7 +304,7 @@ levels : int or array-like, optional
                 coordinates="figure",
             )
 
-        if plotfunc.__name__ in ("quiver", "streamplot"):
+        if plotfunc.__name__ in {"quiver", "streamplot"}:
             title = ds[u]._title_for_slice()
         else:
             title = ds[x]._title_for_slice()

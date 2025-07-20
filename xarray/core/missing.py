@@ -511,7 +511,7 @@ def _get_interpolator(
         elif method == "barycentric":
             kwargs.update(axis=-1)
             interp_class = _import_interpolant("BarycentricInterpolator", method)
-        elif method in ["krogh", "krog"]:
+        elif method in {"krogh", "krog"}:
             kwargs.update(axis=-1)
             interp_class = _import_interpolant("KroghInterpolator", method)
         elif method == "pchip":
@@ -649,7 +649,7 @@ def interp(
 
     result = var
 
-    if method in ["linear", "nearest", "slinear"]:
+    if method in {"linear", "nearest", "slinear"}:
         # decompose the interpolation into a succession of independent interpolation.
         iter_indexes_coords = decompose_interp(indexes_coords)
     else:
@@ -815,7 +815,7 @@ def _interpnd(
     )
     var = Variable([f"dim_{dim}" for dim in range(ndim)], data, fastpath=True)
 
-    if interp_kwargs.get("method") in ["linear", "nearest"]:
+    if interp_kwargs.get("method") in {"linear", "nearest"}:
         indexes_coords = {
             _x.dims[0]: (_x, _new_x) for _x, _new_x in zip(x, new_x, strict=True)
         }

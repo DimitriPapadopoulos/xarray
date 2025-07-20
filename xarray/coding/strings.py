@@ -25,7 +25,7 @@ HAS_NUMPY_2_0 = module_available("numpy", minversion="2.0.0.dev0")
 
 
 def create_vlen_dtype(element_type):
-    if element_type not in (str, bytes):
+    if element_type not in {str, bytes}:
         raise TypeError(f"unsupported type for vlen_dtype: {element_type!r}")
     # based on h5py.special_dtype
     return np.dtype("O", metadata={"element_type": element_type})

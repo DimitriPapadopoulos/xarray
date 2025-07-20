@@ -83,7 +83,7 @@ def _deprecate_positional_args(version) -> Callable[[T], T]:
         pos_or_kw_args = []
         kwonly_args = []
         for name, param in signature.parameters.items():
-            if param.kind in (POSITIONAL_OR_KEYWORD, POSITIONAL_ONLY):
+            if param.kind in {POSITIONAL_OR_KEYWORD, POSITIONAL_ONLY}:
                 pos_or_kw_args.append(name)
             elif param.kind == KEYWORD_ONLY:
                 kwonly_args.append(name)

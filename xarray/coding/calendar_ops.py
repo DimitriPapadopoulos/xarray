@@ -181,7 +181,7 @@ def convert_calendar(
 
     out = obj.copy()
 
-    if align_on in ["year", "random"]:
+    if align_on in {"year", "random"}:
         # Special case for conversion involving 360_day calendar
         if align_on == "year":
             # Instead of translating dates directly, this tries to keep the position within a year similar.

@@ -421,7 +421,7 @@ def decode_cf_variables(
             )
         except Exception as e:
             raise type(e)(f"Failed to decode variable {k!r}: {e}") from e
-        if decode_coords in [True, "coordinates", "all"]:
+        if decode_coords in {True, "coordinates", "all"}:
             var_attrs = new_vars[k].attrs
             if "coordinates" in var_attrs:
                 var_coord_names = [
